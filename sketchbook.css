@@ -1,0 +1,45 @@
+.centerStuff {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.sketchbook{
+    margin: 2%;
+    flex-direction: row;
+    width: 500px;
+    height: 250px;
+    padding: 1%;
+    background-color: rgb(158, 126, 85);
+}
+
+#leftTrigger{
+    background-color: rgba(26, 98, 161, 0.445);
+    width: 100%;
+    height: 100%;
+}
+
+#rightTrigger{
+    background-color: rgba(161, 26, 26, 0.445);
+    width: 100%;
+    height: 100%;
+}
+
+/* ========= ANIMATIONS ========= */
+
+.pageLiftL {
+    animation: liftL 1.3s ease-in-out;
+}
+@keyframes liftL {
+    0% {transform: scaleX(90%);}
+    100% {transform: scaleX(-100%);}
+}
+
+.pageLiftR {
+  animation: liftR 1.3s ease-in-out;
+}
+@keyframes liftR {
+    0% {transform: scaleX(90%);}
+    100% {transform: scaleX(-100%);}
+}

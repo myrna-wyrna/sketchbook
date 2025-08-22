@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Flipable Sketchbook</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="sketchbook.css">
+
   <style>
-    /* Add CSS for book and page style */
+    .html {
+      background-color: rgb(225, 238, 232);
+    }
   </style>
 </head>
 <body>
@@ -14,7 +20,18 @@
   </div>
   <button id="prev">Previous</button>
   <button id="next">Next</button>
-  <script>
+
+  <div class="centerStuff sketchbook">
+      <div id="leftTrigger" class="centerStuff">
+        <p>left page</p>
+      </div>
+
+      <div id="rightTrigger" class="centerStuff">
+        <p>right page</p>
+      </div>   
+    </div>
+
+  <script src="sketchbook.js">
     // Add JavaScript to handle flipping
   </script>
 </body>
