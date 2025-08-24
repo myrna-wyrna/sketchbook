@@ -1,5 +1,57 @@
 console.log('hello!');
 
+let click = false; 
+let leftTrigger = document.getElementById('leftTrigger');
+let rightTrigger = document.getElementById('rightTrigger');
+
+leftTrigger.addEventListener("mouseover", () => {
+  leftTrigger.style.transformOrigin = "right";
+    leftTrigger.style.transform = "scaleX(0.9)";
+  });
+leftTrigger.addEventListener("mouseout", () => {
+    leftTrigger.style.transform = "scaleX(1)";
+  });
+
+leftTrigger.addEventListener("click", () => {
+    if(click == true){
+    }else{
+      leftTrigger.classList.add("pageLiftL");
+      click = true;
+    }
+    
+  });
+leftTrigger.addEventListener("animationend", () => {
+    leftTrigger.classList.remove("pageLiftL");
+    click = false;
+  });
+
+
+
+rightTrigger.addEventListener("mouseover", () => {
+  rightTrigger.style.transformOrigin = "left";
+    rightTrigger.style.transform = "scaleX(0.9)";
+  });
+rightTrigger.addEventListener("mouseout", () => {
+    rightTrigger.style.transform = "scaleX(1)";
+  });
+
+rightTrigger.addEventListener("click", () => {
+    if(click == true){
+    } else{
+      rightTrigger.classList.add("pageLiftR");
+      click = true;
+    }
+  });
+rightTrigger.addEventListener("animationend", () => {
+    rightTrigger.classList.remove("pageLiftR");
+    click = false;
+  });
+
+
+
+/* what spacehedgie made, so in case i mess up:
+console.log('hello!');
+
 let leftTrigger = document.getElementById('leftTrigger');
 let rightTrigger = document.getElementById('rightTrigger');
 
@@ -33,4 +85,4 @@ rightTrigger.addEventListener("click", () => {
   });
 rightTrigger.addEventListener("animationend", () => {
     rightTrigger.classList.remove("pageLiftR");
-  });
+  });*/
