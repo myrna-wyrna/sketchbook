@@ -12,7 +12,7 @@
     height: 250px;
     padding: 1%;
     background-color: rgb(158, 126, 85);
-    /*border-radius: 5px;*/
+    *border-radius: 15px;*
 }
 
 #leftTrigger{
