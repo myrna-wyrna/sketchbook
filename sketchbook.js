@@ -66,6 +66,7 @@ function updateBookContent() {
   const rightPage = document.querySelector('.right-page');
    leftPage.innerHTML = bookContent[currentSpread].left;
   rightPage.innerHTML = bookContent[currentSpread].right;
+console.log("Current spread:", currentSpread, bookContent[currentSpread]);
 };
 
 updateBookContent();
