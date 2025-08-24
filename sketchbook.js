@@ -5,7 +5,7 @@ let leftTrigger = document.getElementById('leftTrigger');
 let rightTrigger = document.getElementById('rightTrigger');
 let currentSpread = 0;
 const bookContent = [
-  { left: "<p>Page1</p>", right: "<p>Page1</p>" },          
+  { left: `<p>Page1</p>`, right: "<p>Page1</p>" },          
   { left: "Page3", right: "Page4" },
   { left: "Page5", right: "Page6" },
   { left: "Page7", right: "Page8" }
