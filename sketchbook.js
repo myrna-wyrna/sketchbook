@@ -11,6 +11,11 @@ const bookContent = [
   { left: "Page7", right: "Page8" }
 ];
 
+console.log('leftTrigger element:', leftTrigger);
+console.log('rightTrigger element:', rightTrigger);
+console.log('leftPage element:', document.querySelector('.left-page'));
+console.log('rightPage element:', document.querySelector('.right-page'));
+
 leftTrigger.addEventListener("mouseover", () => {
   leftTrigger.style.transformOrigin = "right";
     leftTrigger.style.transform = "scaleX(0.9)";
