@@ -67,8 +67,8 @@ rightTrigger.addEventListener("animationend", () => {
   });
 
 function updateBookContent() {
-  const leftPage = document.querySelector('.left-page');
-  const rightPage = document.querySelector('.right-page');
+  const leftPage = document.querySelector('.left-page .page-content');
+  const rightPage = document.querySelector('.right-page .page-content');
    leftPage.innerHTML = bookContent[currentSpread].left;
   rightPage.innerHTML = bookContent[currentSpread].right;
 console.log("Current spread:", currentSpread, bookContent[currentSpread]);
