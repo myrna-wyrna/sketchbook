@@ -3,6 +3,14 @@ console.log('hello!');
 let click = false; 
 let leftTrigger = document.getElementById('leftTrigger');
 let rightTrigger = document.getElementById('rightTrigger');
+let currentSpread = 0;
+const bookContent = [
+  { left: "Page1", right: "Page2" },          
+  { left: "Page3", right: "Page4" },
+  { left: "Page5", right: "Page6" },
+  { left: "Page7", right: "Page8" }
+];
+
 
 leftTrigger.addEventListener("mouseover", () => {
   leftTrigger.style.transformOrigin = "right";
@@ -15,10 +23,13 @@ leftTrigger.addEventListener("mouseout", () => {
 leftTrigger.addEventListener("click", () => {
     if(click == true){
     }else{
-      leftTrigger.classList.add("pageLiftL");
-      click = true;
+      if (currentSpread > 0) {
+        currentSpread--;
+        updateBookContent();
+        leftTrigger.classList.add("pageLiftL");
+        click = true;
+      }
     }
-    
   });
 leftTrigger.addEventListener("animationend", () => {
     leftTrigger.classList.remove("pageLiftL");
@@ -38,8 +49,12 @@ rightTrigger.addEventListener("mouseout", () => {
 rightTrigger.addEventListener("click", () => {
     if(click == true){
     } else{
-      rightTrigger.classList.add("pageLiftR");
-      click = true;
+      if (currentSpread < bookContent.length - 1) {
+        currentSpread++;
+        updateBookContent();
+        rightTrigger.classList.add("pageLiftR");
+        click = true;
+      }
     }
   });
 rightTrigger.addEventListener("animationend", () => {
@@ -47,9 +62,12 @@ rightTrigger.addEventListener("animationend", () => {
     click = false;
   });
 
+function updateBookContent() {
+  const leftPage = document.querySelector('.left-page');
+  const rightPage = document.querySelector('.right-page');
+};
 
-
-/* what spacehedgie made, so in case i mess up:
+/* what spacehedgie made, in case i mess up:
 console.log('hello!');
 
 let leftTrigger = document.getElementById('leftTrigger');
