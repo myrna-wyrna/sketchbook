@@ -1,8 +1,22 @@
-console.log('hello!');
+/*
+Heyo! Updated the script so that it's more compact.
+Thanks for adding page numbers and such! 😊.
+Your original code is still at the bottom in case of us
+needing to revert the code back.
+
+There's some new test images now, but I haven't
+implemented them yet. Feel free to add more test images!
+
+(also added comments to explain code)
+*/
 
 let click = false; 
-let leftTrigger = document.getElementById('leftTrigger');
-let rightTrigger = document.getElementById('rightTrigger');
+
+let leftPage = document.getElementById('leftPage');
+let rightPage = document.getElementById('rightPage');
+
+let pageTriggers = document.getElementsByClassName('pageTrigger');
+
 let currentSpread = 0;
 const bookContent = [
   { left: "Page1", right: "Page2" },          
@@ -11,105 +25,98 @@ const bookContent = [
   { left: "Page7", right: "Page8" }
 ];
 
-console.log('leftTrigger element:', leftTrigger);
-console.log('rightTrigger element:', rightTrigger);
-console.log('leftPage element:', document.querySelector('.left-page'));
-console.log('rightPage element:', document.querySelector('.right-page'));
+console.log('leftPage element:', leftPage);
+console.log('rightPage element:', rightPage);
 
-leftTrigger.addEventListener("mouseover", () => {
-  leftTrigger.style.transformOrigin = "right";
-    leftTrigger.style.transform = "scaleX(0.9)";
-  });
-leftTrigger.addEventListener("mouseout", () => {
-    leftTrigger.style.transform = "scaleX(1)";
+
+
+Array.from(pageTriggers).forEach(page => {  // Turn HTMLCollection to a true array, then do the following for each element (left and right triggers).
+
+  page.addEventListener("click", () => {    // Pages listen to when they are clicked.
+
+    if(click != true){                      // NOTE: If click is true that means the page turn anim is playing.
+      if (page == leftPage) {               // Was it the left page clicked?
+        if (currentSpread > 0) {            // Check if there are more pages (left)
+          currentSpread--;
+          page.classList.add("pageLift");
+          click = true;
+        }
+      } else if (page == rightPage) {       // Was it the right page clicked?
+        if (currentSpread < bookContent.length - 1) { // Check if there are more pages (right)
+          currentSpread++;
+          page.classList.add("pageLift");
+          click = true;
+        }
+      }
+      updateBookContent();
+    }
   });
 
-leftTrigger.addEventListener("click", () => {
+  page.addEventListener("animationend", () => { //when animation ends remove CSS from element and click = false (allows for pages to be clicked again).
+      page.classList.remove("pageLift");
+      click = false;
+    });
+
+});
+
+/* Myn's code
+leftPage.addEventListener("mouseover", () => {
+  leftPage.style.transformOrigin = "right";
+    leftPage.style.transform = "scaleX(0.9)";
+  });
+leftPage.addEventListener("mouseout", () => {
+    leftPage.style.transform = "scaleX(1)";
+  });
+
+leftPage.addEventListener("click", () => {
     if(click == true){
     }else{
       if (currentSpread > 0) {
         currentSpread--;
         updateBookContent();
-        leftTrigger.classList.add("pageLiftL");
+        leftPage.classList.add("pageLift");
         click = true;
       }
     }
   });
-leftTrigger.addEventListener("animationend", () => {
-    leftTrigger.classList.remove("pageLiftL");
+leftPage.addEventListener("animationend", () => {
+    leftPage.classList.remove("pageLift");
     click = false;
   });
 
 
 
-rightTrigger.addEventListener("mouseover", () => {
-  rightTrigger.style.transformOrigin = "left";
-    rightTrigger.style.transform = "scaleX(0.9)";
+rightPage.addEventListener("mouseover", () => {
+  rightPage.style.transformOrigin = "left";
+    rightPage.style.transform = "scaleX(0.9)";
   });
-rightTrigger.addEventListener("mouseout", () => {
-    rightTrigger.style.transform = "scaleX(1)";
+rightPage.addEventListener("mouseout", () => {
+    rightPage.style.transform = "scaleX(1)";
   });
 
-rightTrigger.addEventListener("click", () => {
+rightPage.addEventListener("click", () => {
     if(click == true){
     } else{
       if (currentSpread < bookContent.length - 1) {
         currentSpread++;
         updateBookContent();
-        rightTrigger.classList.add("pageLiftR");
+        rightPage.classList.add("pageLift");
         click = true;
       }
     }
   });
-rightTrigger.addEventListener("animationend", () => {
-    rightTrigger.classList.remove("pageLiftR");
+rightPage.addEventListener("animationend", () => {
+    rightPage.classList.remove("pageLift");
     click = false;
   });
+*/
 
 function updateBookContent() {
-  const leftPage = document.querySelector('.left-page .page-content');
-  const rightPage = document.querySelector('.right-page .page-content');
+  const leftPage = document.querySelector('#leftPage .page-content');
+  const rightPage = document.querySelector('#rightPage .page-content');
    leftPage.innerHTML = bookContent[currentSpread].left;
   rightPage.innerHTML = bookContent[currentSpread].right;
 console.log("Current spread:", currentSpread, bookContent[currentSpread]);
 };
 
 updateBookContent();
-
-/* what spacehedgie made, in case i mess up:
-console.log('hello!');
-
-let leftTrigger = document.getElementById('leftTrigger');
-let rightTrigger = document.getElementById('rightTrigger');
-
-leftTrigger.addEventListener("mouseover", () => {
-  leftTrigger.style.transformOrigin = "right";
-    leftTrigger.style.transform = "scaleX(0.9)";
-  });
-leftTrigger.addEventListener("mouseout", () => {
-    leftTrigger.style.transform = "scaleX(1)";
-  });
-
-leftTrigger.addEventListener("click", () => {
-    leftTrigger.classList.add("pageLiftL");
-  });
-leftTrigger.addEventListener("animationend", () => {
-    leftTrigger.classList.remove("pageLiftL");
-  });
-
-
-
-rightTrigger.addEventListener("mouseover", () => {
-  rightTrigger.style.transformOrigin = "left";
-    rightTrigger.style.transform = "scaleX(0.9)";
-  });
-rightTrigger.addEventListener("mouseout", () => {
-    rightTrigger.style.transform = "scaleX(1)";
-  });
-
-rightTrigger.addEventListener("click", () => {
-    rightTrigger.classList.add("pageLiftR");
-  });
-rightTrigger.addEventListener("animationend", () => {
-    rightTrigger.classList.remove("pageLiftR");
-  });*/
