@@ -25,6 +25,13 @@ const bookContent = [
   { left: "Page7", right: "Page8" }
 ];
 
+// ADD ALL IMAGE FILE NAMES (WITH FILE EXTENSIONS) HERE (Does not need to be numerical)
+const imageFiles = [ 
+  "1.png",
+  "2.jpg",
+  "three.svg",
+]
+
 console.log('leftPage element:', leftPage);
 console.log('rightPage element:', rightPage);
 
@@ -53,9 +60,9 @@ Array.from(pageTriggers).forEach(page => {  // Turn HTMLCollection to a true arr
   });
 
   page.addEventListener("animationend", () => { //when animation ends remove CSS from element and click = false (allows for pages to be clicked again).
-      page.classList.remove("pageLift");
-      click = false;
-    });
+    page.classList.remove("pageLift");          // Remove page flip animation
+    click = false;
+  });
 
 });
 
@@ -112,11 +119,32 @@ rightPage.addEventListener("animationend", () => {
 */
 
 function updateBookContent() {
-  const leftPage = document.querySelector('#leftPage .page-content');
-  const rightPage = document.querySelector('#rightPage .page-content');
-   leftPage.innerHTML = bookContent[currentSpread].left;
-  rightPage.innerHTML = bookContent[currentSpread].right;
-console.log("Current spread:", currentSpread, bookContent[currentSpread]);
+  //const leftPage = document.querySelector('#leftPage .page-content');
+  //const rightPage = document.querySelector('#rightPage .page-content');
+  leftPage.innerHTML = bookContent[currentSpread].left;       // Edit page text (left).
+  rightPage.innerHTML = bookContent[currentSpread].right;     // Edit page text (right).
+  console.log("Current spread:", currentSpread, bookContent[currentSpread]);
+
+  let pageImg1 = document.createElement("img");     // Left page image.
+  let pageImg2 = document.createElement("img");     // Right page image.
+
+  //Left page
+  let lftPgNum = Number(bookContent[currentSpread].left.replace("Page", "")) - 1; // Get left page number from currentSpread dictionary.
+  console.log("/TEST IMAGES/" + imageFiles[lftPgNum]);
+  pageImg1.src = "/TEST IMAGES/" + imageFiles[lftPgNum];          // Set image element source
+  pageImg1.id = bookContent[currentSpread].left;          //  Set image element ID
+  leftPage.append(pageImg1);          // Append the final image element.
+  console.log("#" + pageImg1.id);
+
+  //Right page (essentially works the same as previous code)
+  let rtPgNum = Number(bookContent[currentSpread].right.replace("Page", "")) - 1; // Get right page number from currentSpread dictionary.
+  pageImg2.src = "/TEST IMAGES/" + imageFiles[rtPgNum];
+  pageImg2.id = bookContent[currentSpread].right;
+  rightPage.append(pageImg2);
+  console.log("#" + pageImg2.id);
+
+  //console.log(document.getElementById(bookContent[currentSpread].left));
+  //console.log(document.getElementById(bookContent[currentSpread].right));
 };
 
 updateBookContent();
